@@ -1,0 +1,17 @@
+.crypto-img {
+  width: 3%;
+  height: auto;
+  line-break: normal;
+}
+
+hr.new1 {
+  border-top: 3px solid rgb(0, 0, 0);
+}
+
+#converter {
+  margin-bottom: 2%;
+}
+
+#cryptoConvert {
+  margin-bottom: 10%;
+}
