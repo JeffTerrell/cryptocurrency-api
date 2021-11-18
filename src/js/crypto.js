@@ -1,19 +1,35 @@
 export default class CryptoService {
   static getCrypto() {
-    return new Promise(function(resolve, reject) {
-      let request = new XMLHttpRequest();
-      const url = `https://api.nomics.com/v1/currencies/ticker?key=${process.env.NOMICS_API_KEY}&ids=XRP,BTC,ETH,LTC&interval=1d,30d&per-page=100&page=1&sort=rank`;
-      request.onload = function() {
-        if (this.status === 200) {
-          resolve(request.response);          
-        } else  {
-          reject(request.response);
-        }
-      }; 
-      request.open("GET", url, true);
-      request.send();
-    });
+    return fetch (`https://api.nomics.com/v1/currencies/ticker?key=${process.env.NOMICS_API_KEY}&ids=XRP,BTC,ETH,LTC&interval=1d,30d&per-page=100&page=1&sort=rank`)
+    .then (function(response) {
+      if (!response.ok) {
+        throw Error (response.statusText);
+      }
+      return response.json();
+    })
+    .catch (function(error) {
+      return error;
+    })
   }
+}
+
+
+  // return fetch {
+  //   let request = new XMLHttpRequest();
+  //   const url = `https://api.nomics.com/v1/currencies/ticker?key=${process.env.NOMICS_API_KEY}&ids=XRP,BTC,ETH,LTC&interval=1d,30d&per-page=100&page=1&sort=rank`;
+  //   request.onload = function() {
+  //     if (this.status === 200) {
+  //       resolve(request.response);          
+  //     } else  {
+  //       reject(request.response);
+  //     }
+  //   }; 
+  //   request.open("GET", url, true);
+  //   request.send();
+  // });
+
+
+  
     converter(body, number) {
     const btc = parseFloat(body[0].price);
     const eth = parseFloat(body[1].price);
