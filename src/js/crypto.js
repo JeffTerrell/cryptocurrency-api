@@ -1,6 +1,6 @@
 export default class CryptoService {
   static getCrypto() {
-    return fetch (`https://api.nomics.com/v1/currencies/ticker?key=${process.env.NOMICS_API_KEY}&ids=XRP,BTC,ETH,LTC&interval=1d,30d&per-page=100&page=1&sort=rank`)
+    return fetch (`https://api.nomics.com/v1/currencies/ticker?key=${process.env.NOMICS_API_KEY}&ids=XRP,BTC,ETH,LTC&iterval=1d,30d&per-page=100&page=1&sort=rank`)
     .then (function(response) {
       if (!response.ok) {
         throw Error (response.statusText);
@@ -8,7 +8,7 @@ export default class CryptoService {
       return response.json();
     })
     .catch (function(error) {
-      return error;
+      return Error(error);
     });
   }
   
@@ -30,6 +30,8 @@ export default class CryptoService {
     return convertArr;
   }
 }
+
+
 
 
   // return fetch {
